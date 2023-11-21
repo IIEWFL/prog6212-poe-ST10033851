@@ -1,0 +1,65 @@
+﻿@model CoursePilotWebApp.Models.Domain.StudyRecords
+@using CoursePilotWebApp.Models.Domain
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Record hours studied</h1>
+<hr />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<div class="FormContainer">
+    <div class="CenterContent">
+        <div>
+            <section>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ModuleCode" class="control-label">Module</label>
+                        <select asp-for="ModuleCode" class="form-control">
+                            <option value="">-- Select Module --</option>
+                            @{
+                                // Assuming ViewBag.Modules is the list of modules
+                                List<Module> modules = ViewBag.Modules as List<Module>;
+
+                                if (modules != null)
+                                {
+                                    foreach (var module in modules)
+                                    {
+                                        <option value="@module.ModuleCode">@module.ModuleCode</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="ModuleCode" class="text-danger"></span>
+                </div>
+
+            <div class="form-group">
+                <label asp-for="StudyDate" class="control-label"></label>
+                <input asp-for="StudyDate" class="form-control" />
+                <span asp-validation-for="StudyDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoursStudied" class="control-label"></label>
+                <input asp-for="HoursStudied" class="form-control" />
+                <span asp-validation-for="HoursStudied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

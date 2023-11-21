@@ -1,0 +1,19 @@
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.dll
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.pdb
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.csproj.AssemblyReference.cache
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.csproj.CoreCompileInputs.cache
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.dll
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.pdb
+C:\Users\test\Desktop\VC modules\PROG6212\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.dll.config
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.dll.config
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.dll
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\ModuleManagerCL.pdb
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\EntityFramework.dll
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\EntityFramework.xml
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.csproj.AssemblyReference.cache
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.csproj.CoreCompileInputs.cache
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.csproj.CopyComplete
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.dll
+C:\Users\test\Desktop\PROG6212P2\ModuleManagerCL\obj\Debug\ModuleManagerCL.pdb

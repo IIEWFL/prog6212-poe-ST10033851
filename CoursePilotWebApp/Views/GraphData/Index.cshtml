@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CoursePilotWebApp.Models.Domain.GraphData>
+@using CoursePilotWebApp.Models.Domain;
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h1>Modules</h1>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div class="module-grid">
+    @{
+        List<Module> modules = ViewBag.Modules as List<Module>;
+
+        if (modules != null && modules.Count > 0)
+        {
+            foreach (var item in modules)
+            {
+                <div class="module-item">
+                    <img src="/Images/Image3.png" alt="Module Image">
+                    <h3>@Html.DisplayFor(modelItem => item.moduleName)</h3>
+                    <p>@Html.DisplayFor(modelItem => item.ModuleCode)</p>
+                    <!-- Add more details here -->
+                    <div class="module-actions">
+                        <a asp-action="Details" asp-route-Code="@item.ModuleCode" class="modify">Details</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please enter a module first."
+                });
+            </script>
+        }
+    }
+</div>
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: "@Html.Raw(@TempData["ErrorMessage"])",
+        });
+    </script>
+}
+    

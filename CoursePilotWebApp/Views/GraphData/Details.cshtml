@@ -1,0 +1,159 @@
+﻿@model CoursePilotWebApp.Models.Domain.GraphData
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutNoHeader";
+}
+
+<div class="containers">
+    <div class="content">
+        <div class="heading">
+            <h2>Your Analytics</h2>
+        </div>
+        <div class="blocks">
+            <div class="block block-red">
+                <h3>Module Code</h3>
+                <p>@Html.DisplayFor(model => model.ModuleCode)</p>
+            </div>
+            <div class="block block-green">
+                <h3>Ideal Hours</h3>
+                <p>@Html.DisplayFor(model => model.IdealHours)</p>
+            </div>
+            <div class="block block-blue">
+                <h3>test</h3>
+                <p>@Html.DisplayFor(model => model.WeekStartDate)</p>
+            </div>
+        </div>
+        <div class="big-block">
+            <div class="header">
+                <h2 class="gragh-Heading">Weekly Hours</h2>
+                <label><b>Chart Type</b></label>
+                <select id="ChartType" class="form-control graph-option">
+                    <option>bar</option>
+                    <option>line</option>
+                    <option>pie</option>
+                    <option>doughnut</option>
+                </select>
+                <input id="ID" value="Show Graph" type="button" class="graph-btn" />
+            </div>
+
+            <div id="ChartView">
+                <canvas id="myChart" class="graph"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#ID').click(function () {
+            
+            var idealHours = parseFloat('@ViewBag.IdealHours');
+            var chartType = $("#ChartType").val();
+            var chartView = document.getElementById('ChartView');
+
+            chartView.innerHTML = '&nbsp;';
+            $('#ChartView').append('<canvas id="myChart" class="graph"><canvas>');
+
+            $.ajax({
+                type: "POST",
+                url: "/GraphData/GetGraphData",
+                data: "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+
+            function OnSuccessResult(data) {
+                var _data = data;
+                var _chartLabels = _data[0];
+                var _chartData = _data[1];
+
+                var barColors = ["#E5F230", "#00ACEA", "#FC5252", "#54DB63", "#00EFD1"];
+                new Chart("myChart", {
+                    type: chartType,
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: _chartData,
+                            borderRadius: 15,
+                            barThickness: 100,
+                            borderColor: '#6c5dd3',
+                            pointBorderColor: 'transparent',
+                            tension: 0.4,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x:{
+                                ticks: {
+                                    color: 'black'
+                                },
+                                grid:{
+                                    display:false,
+                                }
+                            },
+                            y: {
+
+                                ticks: {
+                                    color: 'black'
+                                },
+                                grid:{
+                                    display:true,
+                                },
+                                suggestedMax: idealHours,
+                                beginAtZero: true,
+                            }
+                        }
+                    }
+                });
+            }
+
+            function OnError(err) {
+                console.error(err);
+            }
+        });
+    });
+</script>
+
+
+@*<div>
+    <h4>GraphData</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModuleCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModuleCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WeekStartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WeekStartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdealHours)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdealHours)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalHoursStudied)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalHoursStudied)
+        </dd>
+    </dl>
+</div>
+*@

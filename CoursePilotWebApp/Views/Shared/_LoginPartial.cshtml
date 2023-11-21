@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item cross">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item cross">
+                <a class="nav-link " asp-area="" asp-controller="Modules" asp-action="Index">Modules</a>
+            </li>
+            <li class="nav-item cross">
+                <a class="nav-link " asp-area="" asp-controller="StudyRecords" asp-action="Index">Study</a>
+            </li>
+            <li class="nav-item cross">
+                <a class="nav-link " asp-area="" asp-controller="GraphData" asp-action="Index">Graph</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav d-flex justify-content-end">
+            <li class="nav-item">
+                <label class="toggle">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav d-flex justify-content-end">
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
+            <li class="nav-item" cross>
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+            <li class="nav-item cross">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+        </ul>
+    }
+</div>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CoursePilotWebApp.Models.Domain.StudyRecords>
+@using CoursePilotWebApp.Models.Domain
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Study Records</h1>
+
+<a asp-action="Create" class="arrow">
+    <span class="Create-Link">
+        <span>
+            <span>&#11153;&nbsp;</span>
+        </span>
+        Create new study record
+    </span>
+</a>
+
+<div class="header">
+    <label class="control-label">Filter by: </label>
+    <select id="moduleCodeFilter" class="form-control graph-option">
+        <option value="">-- Select Module --</option>
+        @{
+            // Assuming ViewBag.Modules is the list of modules
+            List<Module> modules = ViewBag.Modules as List<Module>;
+
+            if (modules != null)
+            {
+                foreach (var module in modules)
+                {
+                    <option value="@module.ModuleCode">@module.ModuleCode</option>
+                }
+            }
+        }
+    </select>
+</div>
+<table class="record-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Module Code</th>
+            <th>Study Date</th>
+            <th>Hours Studied</th>
+            <th>Self Study Hours Left</th>
+            <th>Ideal Hours</th>
+            <th>Actions</th>
+            <th>Week Finished</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var (index, item) in Model.OrderByDescending(value => value.StudyDate).Select((value, i) => (i + 1, value)))
+        {
+            <tr class="record" data-module-code="@item.ModuleCode">
+                <td class="index-cell">
+                    <div class="index-block">@index</div>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ModuleCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.StudyDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.HoursStudied)</td>
+                <td>@Html.DisplayFor(modelItem => item.selfStudyHoursleft)</td>
+                <td>@Html.DisplayFor(modelItem => item.IdealHours)</td>
+                <td class="record-actions">
+                    <a asp-action="Details" asp-route-id="@item.ID" class="details btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="delete btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <input type="checkbox" asp-for="@item.WeekFinished" disabled class=""checkbox"/>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#moduleCodeFilter').change(function () {
+            var selectedModuleCode = $(this).val();
+
+            if (selectedModuleCode) {
+                // Hide all rows and show only those matching the selected module code
+                $('.record').hide();
+                $('.record').filter('[data-module-code="' + selectedModuleCode + '"]').show();
+            } else {
+                // If no module code is selected, show all rows
+                $('.record').show();
+            }
+        });
+    });
+</script>
+
+
+
