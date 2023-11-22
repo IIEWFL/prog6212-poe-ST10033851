@@ -1,29 +1,28 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace CoursePilotWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Addedidentity : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
+                           name: "AspNetRoles",
+                           columns: table => new
+                           {
+                               Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                               Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                               NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                               ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                           },
+                           constraints: table =>
+                           {
+                               table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                           });
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
@@ -194,31 +193,70 @@ namespace CoursePilotWebApp.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateTable(
+                   name: "studyRecords",
+                   columns: table => new
+                   {
+                       ID = table.Column<int>(type: "int", nullable: false)
+                           .Annotation("SqlServer:Identity", "1, 1"),
+                       ModuleCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                       UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                       StudyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                       HoursStudied = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                       selfStudyHoursleft = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                       IdealHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                       WeekFinished = table.Column<bool>(type: "bit", nullable: false)
+
+                   },
+                   constraints: table =>
+                   {
+                       table.PrimaryKey("PK_studyRecords", x => x.ID);
+                   });
+
+            migrationBuilder.CreateTable(
+                name: "GraphData",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ModuleCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WeekStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdealHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalHoursStudied = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GraphData", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModuleCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    moduleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    credits = table.Column<int>(type: "int", nullable: false),
+                    weeklyClassHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    weeksInSem = table.Column<int>(type: "int", nullable: false),
+                    startDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    selfStudyHoursPerWeek = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.ID);
+                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

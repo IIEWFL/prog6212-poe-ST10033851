@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoursePilotWebApp.Migrations
 {
     [DbContext(typeof(CoursePilotDbContext))]
-    [Migration("20231112144713_Added identity")]
-    partial class Addedidentity
+    [Migration("20231122152843_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,41 +25,67 @@ namespace CoursePilotWebApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CoursePilotWebApp.Models.Domain.GraphData", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<decimal>("IdealHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ModuleCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalHoursStudied")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("WeekStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GraphData");
+                });
+
             modelBuilder.Entity("CoursePilotWebApp.Models.Domain.Module", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("HoursStudied")
                         .HasColumnType("int");
 
-                    b.Property<int>("LastStudyDate")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ModuleCode")
-                        .HasColumnType("int");
+                    b.Property<string>("ModuleCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("credits")
                         .HasColumnType("int");
 
-                    b.Property<int>("moduleName")
-                        .HasColumnType("int");
+                    b.Property<string>("moduleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("selfStudyHoursPerWeek")
-                        .HasColumnType("int");
+                    b.Property<decimal>("selfStudyHoursPerWeek")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("selfStudyHoursleft")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("startDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("startDate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("weeklyClassHours")
-                        .HasColumnType("int");
+                    b.Property<decimal>("weeklyClassHours")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("weeksInSem")
                         .HasColumnType("int");
@@ -69,23 +95,40 @@ namespace CoursePilotWebApp.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("CoursePilotWebApp.Models.Domain.User", b =>
+            modelBuilder.Entity("CoursePilotWebApp.Models.Domain.StudyRecords", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<string>("PasswordHash")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<decimal>("HoursStudied")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("IdealHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ModuleCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<DateTime>("StudyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("WeekFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("selfStudyHoursleft")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.ToTable("StudyRecords");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -290,21 +333,6 @@ namespace CoursePilotWebApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ModuleUser", b =>
-                {
-                    b.Property<Guid>("modulesID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("usersID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("modulesID", "usersID");
-
-                    b.HasIndex("usersID");
-
-                    b.ToTable("ModuleUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -352,21 +380,6 @@ namespace CoursePilotWebApp.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ModuleUser", b =>
-                {
-                    b.HasOne("CoursePilotWebApp.Models.Domain.Module", null)
-                        .WithMany()
-                        .HasForeignKey("modulesID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoursePilotWebApp.Models.Domain.User", null)
-                        .WithMany()
-                        .HasForeignKey("usersID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

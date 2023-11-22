@@ -4,10 +4,19 @@
     font-size: 16px;
   }
 }
-* {
-    font-family: Michroma;
-    font-size:13px;
+
+@font-face {
+    font-family: 'Michroma';
+    src: url('/Images/Michroma-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
 }
+
+* {
+    font-family: 'Michroma', Arial;
+    font-size: 13px;
+}
+
 
 html {
     position: relative;

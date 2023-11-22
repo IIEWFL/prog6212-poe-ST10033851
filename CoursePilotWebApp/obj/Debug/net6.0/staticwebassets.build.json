@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vj3yTlIDaQhk/mUOj0H7xn9h9ju2OitvZgBtwONESlE=",
+  "Hash": "Jm/CgNaGjj9Nq9a0BAoV6hM3y86SSAXyP4Er8h/iLcc=",
   "Source": "CoursePilotWebApp",
   "BasePath": "_content/CoursePilotWebApp",
   "Mode": "Default",
@@ -1188,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Line.png"
+    },
+    {
+      "Identity": "C:\\Users\\test\\Desktop\\VC modules\\PROG6212\\PROG6212P3\\CoursePilotWebApp\\wwwroot\\Images\\Michroma-Regular.ttf",
+      "SourceId": "CoursePilotWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\test\\Desktop\\VC modules\\PROG6212\\PROG6212P3\\CoursePilotWebApp\\wwwroot\\",
+      "BasePath": "_content/CoursePilotWebApp",
+      "RelativePath": "Images/Michroma-Regular.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Michroma-Regular.ttf"
     },
     {
       "Identity": "C:\\Users\\test\\Desktop\\VC modules\\PROG6212\\PROG6212P3\\CoursePilotWebApp\\wwwroot\\Images\\Navbar2.png",
