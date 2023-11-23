@@ -241,7 +241,7 @@ body {
     border-radius: 10px;
     text-align: center;
     transition: transform 0.2s;
-    color:white;
+    color:Black;
 }
 
     .module-item:hover {
@@ -258,6 +258,10 @@ body {
 .module-actions {
     margin-top: 10px;
 }
+
+    .modify:hover {
+        color: #00FFB2 !important;
+    }
 
 /*Create module page*/
 .form-control {
@@ -484,6 +488,7 @@ body.dark .record {
 
 body.dark .module-item {
     background: #6c5dd3;
+    color: white;
 }
 
 body.dark .navbars {
