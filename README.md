@@ -58,6 +58,8 @@ The code adheres to widely recognised coding standards and includes detailed com
 To modify data, LINQ is used.
 According to the project requirements, a custom class library with classes relevant to data and calculations is added.
 
+NB: After the video was made, i did fix the issue where the self study hours left would go below 0 and have a negative value.
+
 ### how to connect to the database
 1. Instead of creating the tables from a sql file, the application makes use of migrations.
 

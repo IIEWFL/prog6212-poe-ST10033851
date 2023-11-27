@@ -174,6 +174,10 @@ namespace CoursePilotWebApp.Controllers
                 {
                     studyRecord.IdealHours = module!.selfStudyHoursPerWeek;
                     studyRecord.selfStudyHoursleft = lastStudyDate.selfStudyHoursleft - studyRecord.HoursStudied;
+                    if (studyRecord.selfStudyHoursleft < 0)
+                    {
+                        studyRecord.selfStudyHoursleft = 0;
+                    }
                     _context.StudyRecords.Add(studyRecord);
                 }
             }
@@ -188,6 +192,7 @@ namespace CoursePilotWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //This methods sets the default values for the new week
         private void SetDefaultValues(StudyRecords studyRecord, decimal idealHours)
         {
             studyRecord.IdealHours = idealHours;
