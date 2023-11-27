@@ -6,14 +6,12 @@
 }
 
 @font-face {
-    font-family: 'Michroma';
-    src: url('/Images/Michroma-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Michromas';
+    src: url('/Images/Michroma-Regular.ttf') format('truetype');
 }
 
 * {
-    font-family: 'Michroma', Arial;
+    font-family: 'Michromas', Arial !important;
     font-size: 13px;
 }
 

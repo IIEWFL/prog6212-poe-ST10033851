@@ -49,7 +49,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var (index, item) in Model.OrderByDescending(value => value.StudyDate).Select((value, i) => (i + 1, value)))
+        @foreach (var (index, item) in Model
+        .Where(value => value.UserID == ViewBag.UserId)  
+        .OrderByDescending(value => value.StudyDate)
+        .Select((value, i) => (i + 1, value)))
         {
             <tr class="record" data-module-code="@item.ModuleCode">
                 <td class="index-cell">

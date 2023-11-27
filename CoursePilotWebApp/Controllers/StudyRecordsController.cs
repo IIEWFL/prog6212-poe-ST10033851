@@ -34,7 +34,9 @@ namespace CoursePilotWebApp.Controllers
                 .ToList();
 
             //Saves  the use user modules in a viewb ag to use in the index view
+            
             ViewBag.Modules = userModules;
+            ViewBag.UserId = userId;
 
             // Checks if the 'Modules' entity in the database is not null
             // If its not null, it will return the 'Index' view with the retrieved user modules
