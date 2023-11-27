@@ -22,6 +22,8 @@ namespace CoursePilotWebApp.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            // Create a new instance of the ErrorViewModel and pass the RequestId,
+            // which is either the current activity's Id or the HttpContext's TraceIdentifier.
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
