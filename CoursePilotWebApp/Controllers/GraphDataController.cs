@@ -9,6 +9,11 @@ using CoursePilotWebApp.Data;
 using CoursePilotWebApp.Models.Domain;
 using System.Security.Claims;
 
+//Pathan, F. (27 Aug 2019). How To Get Current User Claims In ASP.NET Identity. [online] www.c-sharpcorner.com.
+//Available at: https://www.c-sharpcorner.com/blogs/how-to-get-current-user-claims-in-asp-net-identity [Accessed 12 Oct. 2023].
+//mjrousos (n.d.). Securing .NET Microservices and Web Applications. [online] learn.microsoft.com.
+//Available at: https://learn.microsoft.com/en-us/dotnet/architecture/microservices/secure-net-microservices-web-applications/. [Accessed 12 Oct. 2023].
+
 namespace CoursePilotWebApp.Controllers
 {
     public class GraphDataController : Controller
